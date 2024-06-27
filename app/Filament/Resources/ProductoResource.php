@@ -44,11 +44,10 @@ class ProductoResource extends Resource
                     ->required()
                     ->numeric()
                     ->label('Precio'),
-                    Forms\Components\Select::make('categoria_id')
+                Forms\Components\Select::make('categoria_id')
                     ->label('Categoría')
                     ->required()
-                    ->relationship('categoria', 'categoria_nombre')
-                    ->searchable(),
+                    ->relationship('categoria', 'categoria_nombre'),
             ]);
     }
 

@@ -11,8 +11,8 @@ class ProductosController extends Controller
         $productos = Producto::all();
         //return $productos;
         //para enviarlo a la vista
-         return view("Productos", compact("productos"));
-         //return response()->json($productos); 
+        //  return view("Productos", compact("productos"));
+         return response()->json($productos); 
         
 
     }
@@ -42,10 +42,10 @@ class ProductosController extends Controller
 
     Public function mostrar($producto){
         $producto = Producto::find($producto);
-        return view("mostrar", compact("producto"));
-        //$productoJSON = json_encode($producto);
+        // return view("mostrar", compact("producto"));
+        $productoJSON = json_encode($producto);
 
-    //return $productoJSON;
+    return $productoJSON;
     }
 
     Public function editar($id){
@@ -80,14 +80,18 @@ class ProductosController extends Controller
         return view('categorias', compact('categorias'));
     }
 
-    public function prod_categoria($categoria_id)
+    public function prod_categoria($categoria)
     {
         // Obtener la categoría específica junto con sus productos
-        $categoria = Categoria::findOrFail($categoria_id);
+        $categoria = Categoria::where('categoria_nombre', $categoria)->firstOrFail();
         $productos = $categoria->productos;
-
+        
         // Devolver la vista con los productos de la categoría
-        return view('prodxCategoria', compact('categoria', 'productos'));
+        // return view('prodxCategoria', compact('categoria', 'productos'));
+        
+        $productoJSON = json_encode($productos);
+        return $productoJSON;
+        
     }
 
 

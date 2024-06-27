@@ -30,7 +30,10 @@ Route::get('/Productos', [ProductosController::class, "index"]);
 
 Route::get('/Productos/Categorias', [ProductosController::class, 'categoria']);
 
-Route::get('/Productos/Categoria/{categoria}', [ProductosController::class, 'prod_categoria']);
+// Route::get('/Productos/Categorias/{categoria}', [ProductosController::class, 'prod_categoria']);
+
+Route::get('/Categorias/{categoria}', [ProductosController::class, 'prod_categoria'])
+    ->where('categoria', '.*');
 
 Route::get('/Productos/Crear', [ProductosController::class, "crear"]);
 Route::post('/Productos', [ProductosController::class, "store"]);
